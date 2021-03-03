@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dice-O-Matic 5000</title>
+	<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+
+	<style>
+		body{
+			background-color: #F8F8F8;
+		}
+
+		h1{
+			color: black;
+			font-family: 'Uncial Antiqua', cursive;
+			font-size: 50pt;
+		}
+
+		h2{
+			color: grey;
+			font-size: 40pt;
+		}
+
+		img{
+			border-radius:40%;
+		}
+	</style>
+
+</head>
+<body>
+	<h1>Dice-O-Matic 5000</h1>
+	<h2 id="placeholder">Select a dice</h2>
+
+	<script>
+	//TODO:
+	//Use var someVariableName = new Audio("yourSoundClipHere.mp3"); to create a new audio 'object' that we can play later with someVariableName.play()
+
+	function roll(choice){
+	//TODO:
+	//This should pick a random number between 1 and the maximum 6, or 20 in this example.  
+	//We want to construct a sentence like
+	// "Rolling a 20 sided dice, you rolled a 17" where we substitute in the max value and the rolled value into that sentence.
+	//Next we want to replace the placeholder text of "Select a dice" with our new sentence.
+
+	//bonus points: have the sound effect trigger whenever you roll the dice. 
+	}
+ 
+	</script>
+
+<img src="six.png" onclick="roll(6)"/> <!-- Image of a 6 sided dice, onclick() starts a roll with max roll of 6 -->
+<img src="twenty.jpg" onclick="roll(20)"/><!-- Image of a 20 sided dice, onclick() starts a roll with max roll of 20 -->
+
+</body>
+</html>
