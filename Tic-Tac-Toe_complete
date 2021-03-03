@@ -1,0 +1,118 @@
+<html>
+<head>
+	<!--
+	This example comes from "Get Coding 2!" by David Whitney
+	-->
+	<title> JS Day 3 - Tic-Tac-Toe </title>
+	<style>
+		.row div{
+			border: 1px solid black;
+			height: 30px;
+			width: 40px;
+			float: left;
+			background-color: lightgrey;
+			border-radius: 10%;
+			padding-top: 10px;
+			text-align: center;
+		}
+
+		.row {
+			clear: both;
+		}
+
+		button {
+			border-radius: 10px;
+			color: black;
+		}
+
+		.spacer {
+			clear:both;
+			height: 10px;
+		}
+
+
+
+	</style>
+
+</head>
+<body>
+
+<script>
+	//var currentPlayer = "X";
+	var won = false;
+	var currentPlayer = "X";
+
+	function checkGameBoard(){
+		//check the diagonals
+		checkWinner(document.getElementById("0_0").innerText,
+			document.getElementById("1_1").innerText,
+			document.getElementById("2_2").innerText);
+
+		checkWinner(document.getElementById("0_2").innerText,
+			document.getElementById("1_1").innerText,
+			document.getElementById("2_0").innerText);
+
+		for(var i = 0; 1 <=2; i++){
+		//check the columns
+		checkWinner(document.getElementById("0_" + i).innerText,
+			document.getElementById("1_" + i).innerText,
+			document.getElementById("2_" + i).innerText);
+
+		//check the rows
+		checkWinner(document.getElementById(i + "_0").innerText,
+			document.getElementById(i + "_1").innerText, 
+			document.getElementById(i + "_2").innerText);
+		}
+	}
+
+	function checkWinner(first, second, third){
+		if(first != "" && first == second && first == third){
+			alert("huzzah!");
+			won = true;
+		}
+	}
+
+	function choose(box){
+		if(box.innerText != "" || won) return;
+		box.innerHTML = currentPlayer;
+		currentPlayer == "X" ? currentPlayer = "O" : currentPlayer = "X";
+		checkGameBoard();
+	}
+
+	function reset(){
+		location.reload();
+	}
+
+	
+</script>
+
+
+<p>Tic-Tac-Toe Test</p>
+<div>
+   <div class = "row">
+   		<div id="0_0" onclick="choose(this)"></div>
+   		<div id="1_0" onclick="choose(this)"></div>
+   		<div id="2_0" onclick="choose(this)"></div>
+   </div>
+
+   <div class = "row">
+   		<div id="0_1" onclick="choose(this)"></div>
+   		<div id="1_1" onclick="choose(this)"></div>
+   		<div id="2_1" onclick="choose(this)"></div>
+   </div>
+
+   <div class = "row">
+   		<div id="0_2" onclick="choose(this)"></div>
+   		<div id="1_2" onclick="choose(this)"></div>
+   		<div id="2_2" onclick="choose(this)"></div>
+   </div>
+
+</div> <!-- End of the game board-->
+
+<div class = "spacer"></div>
+
+<button onclick="reset();">Reset</button>
+
+
+</body>
+</html>
