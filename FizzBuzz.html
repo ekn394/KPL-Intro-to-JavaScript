@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FizzBuzz</title>
+</head>
+<body>
+<h1>FizzBuzz</h1>
+
+<script>
+for (var counter = 1; counter <= 50; counter++){
+	if (counter % 3 == 0 ){
+		if (counter % 5 == 0){
+			document.write("FizzBuzz <br>");
+		}
+		else{
+			document.write("Fizz <br>");
+		}
+	}
+
+	else if (counter % 5 == 0){
+		document.write("Buzz <br>");
+	}
+
+	else {
+		document.write(counter + "<br>")
+	}
+}
+
+</script>
+</body>
+</html>
