@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>To-Do List In Progress </title>
+
+<style>
+
+
+</style>
+
+
+<script>
+
+function addItem(){
+	var newItem = document.createElement("div");
+	newItem.innerHTML = document.getElementById("userInput").value;
+	newItem.onclick = removeItem;//for some reason can't have round brackets
+	document.getElementById("list").appendChild(newItem);
+	document.getElementById("userInput").value = "";
+}
+
+
+function removeItem(){
+	document.getElementById("list").removeChild(this);
+}
+
+
+</script>
+
+</head>
+<body>
+<h1>To-Do List - End of Day 5 </h1>
+
+<input type="text" id="userInput"/>
+<br>
+<input type="button" value="Add Item" onclick='addItem()'/>
+
+<div id="list"></div>
+
+
+</body>
+</html>

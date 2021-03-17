@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>To-Do List</title>
+	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" rel="stylesheet">
+	<style>
+
+		body{
+			background-color: black;
+			color: #00bfff;
+			font: italic 300% fantasy;
+			/*font-family: 'Oswald', sans-serif;*/
+			font-size: 24pt;
+		}
+
+		.title{
+			font-size: 150%;
+			text-align: center;
+			border: solid #00bfff 10px;
+			border-radius: 50px;
+			color: black;
+			/*color: #00bfff;
+			*/
+			margin: 2%;
+		}
+
+		.input{
+			width: 80%;
+			height: 15%;
+			font-weight: bolder;
+			background-color: #88eeff;
+			text-align: center;
+			font-size: 24pt;
+			margin-left: 10%;
+			margin-right: 10%;
+			border-radius: 25px;
+		}
+
+		.gradient{
+			background-image: linear-gradient(to bottom right, blue, cyan);
+		}
+
+		.padding {
+			padding: 1%;
+		}
+
+		.inputHolder{
+			width:100%;
+		}
+
+		.button{
+			background-color: #88eeff;
+			height: 15%;
+			font-weight: bolder;
+			width: 25%;
+			font-size: 24pt;
+			margin-left:5%;
+			border-radius: 25px;
+		}
+
+		.buttonHolder{
+			width:100%;
+		}
+
+		#list div{
+			padding: 10px;
+			margin: 5px;
+			border: solid 4px #00bfff;
+			font-size: 26pt;
+			border-radius: 25px;
+			color: #00bfff;
+		}
+
+		:focus{
+			background-color: cyan;
+			/*focus is the thing you are selecting*/	
+		}
+
+	</style>
+
+		
+<script>
+
+function addItem(){
+	var newItem = document.createElement("div");
+	newItem.innerHTML = document.getElementById("userInput").value;
+	newItem.onclick = removeItem;//for some reason can't have round brackets
+	document.getElementById("list").appendChild(newItem);
+	document.getElementById("userInput").value = "";
+}
+
+
+function removeItem(){
+	document.getElementById("list").removeChild(this);
+}
+
+
+</script>
+</head>
+<body>
+	<div class = "title padding gradient">
+		<h2>Daily To-Do List</h2>
+	</div>
+	<div class="inputHolder">
+		<input class = "input padding" type="text" id="userInput" value = "Enter new tasks here" onfocus="this.value=''" />
+	</div>
+	<br/>
+	<div class="buttonHolder">
+		<input class = "button padding" type="button" value="Add Item"  onclick="addItem();"/>
+		<input class = "button padding" type="button" value="Save Task List"  onclick="saveList();"/>
+		<input class = "button padding" type="button" value="Load Saved List"  onclick="reloadPage();"/>
+	</div>
+	<div id="list" class = "padding"></div>
+	<script>
+
+	</script>
+</body>
+</html>
