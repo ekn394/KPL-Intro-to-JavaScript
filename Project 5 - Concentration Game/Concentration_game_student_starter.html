@@ -116,7 +116,7 @@ function updateMessage(){
 
 function resetCards(){
 	//remove 'selected' from the list of classes for firstCard and SecondCard.
-	//put cards_selected counter back to zero
+	//put cardsSelected counter back to zero
 }
 
 
@@ -147,13 +147,13 @@ function dealCards(){
 
 
 function chooseCard(card){
-	if (cards_selected <1){
+	if (cardsSelected <1){
 		//This will be the first card selectd
 		card.classList.add("selected");
-		cards_selected += 1;
+		cardsSelected += 1;
 	}
 	
-	else if (cards_selected == 1){
+	else if (cardsSelected == 1){
 		//This will be the second card selected
 
 		if (cardText1 == cardText2){
