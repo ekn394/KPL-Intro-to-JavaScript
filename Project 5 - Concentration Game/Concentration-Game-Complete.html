@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Completed Concentration Game </title>
+	<style>
+	body{
+		font-size: 0pt;
+	}
+
+	.card{
+		height:100px;
+		width: 125px;
+		background-color: #CCC;
+		border: solid 2px;
+		float: left;
+		border-radius: 10px;
+		text-align: center;
+		padding-top: 25px;
+	}
+
+	.row{
+		width: 100%;
+		clear: both;
+
+	}
+
+	.selected{
+		background-color: cyan;
+		font-size: 50pt;
+	}
+
+	.match{
+		background-color: magenta;
+		font-size: 50pt;
+	}
+
+	h3{
+		font-size: 30pt;
+	}
+
+</style>
+
+
+</head>
+<body>
+
+<div><!--container for the game-->
+	<div class = "row">
+		<div class = "card" id="0" onclick="chooseCard(this)">a</div>
+		<div class = "card" id="1" onclick="chooseCard(this)">b</div>
+		<div class = "card" id="2" onclick="chooseCard(this)">c</div>
+		<div class = "card" id="3" onclick="chooseCard(this)">d</div>
+	</div>
+	<div class = "row">
+		<div class = "card" id="4" onclick="chooseCard(this)">e</div>
+		<div class = "card" id="5" onclick="chooseCard(this)">f</div>
+		<div class = "card" id="6" onclick="chooseCard(this)">g</div>
+		<div class = "card" id="7" onclick="chooseCard(this)">h</div>
+	</div>
+	<div class = "row">
+		<div class = "card" id="8" onclick="chooseCard(this)">a</div>
+		<div class = "card" id="9" onclick="chooseCard(this)">b</div>
+		<div class = "card" id="10" onclick="chooseCard(this)">c</div>
+		<div class = "card" id="11" onclick="chooseCard(this)">d</div>
+	</div>
+	<div class = "row">
+		<div class = "card" id="12" onclick="chooseCard(this)">e</div>
+		<div class = "card" id="13" onclick="chooseCard(this)">f</div>
+		<div class = "card" id="14" onclick="chooseCard(this)">g</div>
+		<div class = "card" id="15" onclick="chooseCard(this)">h</div>
+	</div>
+</div>
+
+<h3 class = "row" id="message">Tries: 0</h3>
+
+<script type="text/javascript">
+
+
+//You are probably going to need some variables for things to keep track of
+//How many cards you have flipped over to check for a match.
+//Tracking how many attempts you make at finding pairs, how many successful matches you have found.
+//You will want variables for the firstCard and the secondCard so that IF your second card is a match, then you can easily change the properties of that first card chosen.  
+var tries = 0;
+var firstCard;
+var cardText1 = ""; //empty string
+var secondCard;
+var cardText2 = ""; //empty string
+var cardsSelected = 0;
+
+// One of these variables is going to be a list of cards
+var cardList = [
+"&#128512;",
+"&#128512;", 
+"!=",
+"!=",
+"==",
+"==",
+"<",
+"<",
+"if",
+"if",
+"else",
+"else",
+"&&",
+"&&",
+"||",
+"||"
+ ];
+
+
+function updateMessage(){
+	//grab the the element with id ='message' and update 'Tries: 0'
+	tries += 1;
+	someVariable = document.getElementById("message");
+	someVariable.innerText = "Tries: " + tries;
+}
+
+function resetCards(){
+	//remove 'selected' from the list of classes for firstCard and SecondCard.
+	//put cardsSelected counter back to zero
+	firstCard.classList.remove("selected");
+	secondCard.classList.remove("selected");
+	cardsSelected = 0;
+}
+
+
+function shuffle(array) {
+	//This shuffle function comes straight from stack overflow
+	//https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  //alert(array);
+  return array;
+}
+
+function dealCards(){
+	//use a for loop to distribute the newly shuffled cards
+	for (var i = 0; i < cardList.length; i++){
+		var current = document.getElementById(i);
+		current.innerHTML = cardList[i];
+	}
+}
+
+
+function chooseCard(card){
+
+	if (card.classList.contains("selected")){
+		return false;
+	}
+
+
+	if (cardsSelected <1){
+		//This will be the first card selectd
+		card.classList.add("selected");
+		cardsSelected += 1;
+		firstCard = card;
+		cardText1 = card.innerText;
+	}
+	
+	else if (cardsSelected == 1){
+		//This will be the second card selected
+		cardsSelected +=1;
+		updateMessage();
+		secondCard = card;
+		cardText2 = card.innerText;
+
+		if (card.classList.contains("selected")){
+			return false;
+		}
+
+		if (cardText1 == cardText2){
+			//If they are a match.  Give both cards the 'match'
+			card.classList.add("match");
+			card.classList.add("selected");
+			firstCard.classList.add("match");
+			cardsSelected = 0;
+		}
+	
+		else{
+			//If the second card wasn't a match.  Show both cards for a second before reseting the current two open cards. Use setTimeout(someFunction,1000).
+			card.classList.add("selected");
+			setTimeout(resetCards, 1000);
+		}
+	}
+}
+//alert(cardList);
+shuffle(cardList);
+//alert(cardList);
+
+dealCards();
+
+</script>
+</body>
+</html>
